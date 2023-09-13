@@ -1,0 +1,104 @@
+*{
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+body{
+    width: 100%;
+    height: 1000px;
+}
+.container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form{
+   
+    border: 1px solid #CCC;
+    width: 500px;
+    height: 458px;
+    
+}
+.header{
+    padding: 10px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom:1px solid #CCC ;
+}
+.content{
+   width: 100%;
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.title{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+a{
+    color: rgb(2, 142, 207);
+    font-size: 14px;
+}
+.name {
+    width: 75%;
+    padding-bottom: 30px;
+}
+.password{
+    width: 75%;
+    padding-bottom: 30px;
+}
+
+ input{
+    width: 100%;
+    height: 35px;
+    border: transparent;
+    background-color: #f4f0f0;
+    border-radius: 8px;
+}
+button{
+    border: transparent;
+    border-radius: 5px;
+}
+.login_btn{
+    width: 75%;
+   
+}
+.login{
+    width: 100%;
+    height: 35px;
+    background-color:#00BF6F ;
+    border-radius: 40px;
+    color: white;
+    margin-bottom: 20px;
+}
+.text{
+    width: 100%;
+    text-align: center;
+    padding-bottom:10px ;
+    color: #000000A6;
+    font-weight: 200;
+}
+.sc{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+.sc button{
+    padding:0 20px;
+}
+.fb{
+    width: 45%;
+    height: 30px;
+    border-radius: 30px;
+}
+.gg{
+    width: 45%;
+    height: 30px;
+    border-radius: 30px;
+}

@@ -4,27 +4,65 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lop CNPM</title>
+    <link rel="stylesheet" href="index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
   </head>
   <body>
-    <div id="form">
-      <div id="header">
-        <h3>Đăng nhập</h3>
-      </div>
-      <div id="body">
-        <div id="name">
-          <div>Tên đăng nhập</div>
-          <input type="text" name="username" id="" />
+    <div class="container">
+      <div class="form">
+        <div class="header">
+          <button class="close_icon">
+            <i
+              class="fa-solid fa-x"
+              style="position: absolute; right: 0; padding-right: 10px"></i>
+          </button>
+          <h4>Đăng nhập</h4>
         </div>
-        <div id="password">
-          <span>Mật khẩu</span>
-          <span><a href="">Quên mật khẩu</a></span>
+        <div class="content">
+          <div class="name">
+            <div class="title">Tên đăng nhập</div>
+            <input type="text" name="username" id="" />
+          </div>
+          <div class="password">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+              ">
+              <div class="title">Mật khẩu</div>
+              <div><a href="">Quên mật khẩu?</a></div>
+            </div>
+            <div>
+              <input type="password" name="password" id="" />
+            </div>
+          </div>
+          <div class="login_btn">
+            <button class="login">Đăng nhập</button>
+            <div class="text">hoặc đăng nhập bằng</div>
+            <div class="sc">
+              <button class="fb">
+                <i
+                  class="fa-brands fa-facebook-f fa-lg"
+                  style="color: #165eda; padding-right: 5px"></i
+                >Facebook
+              </button>
+              <button class="gg">
+                <i
+                  class="fa-brands fa-google fa-lg"
+                  style="padding-right: 5px"></i
+                >Google
+              </button>
+            </div>
+          </div>
           <div>
-            <input type="password" name="password" id="" />
+            Bạn chưa có tài khoản?<span><a href="">Đăng ký ngay!</a></span>
           </div>
-          <div id="button">
-            <button>Đăng nhập</button>
-          </div>
-          <div>Bạn chưa có tài khoản</div>
         </div>
       </div>
     </div>
