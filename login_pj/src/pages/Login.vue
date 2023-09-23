@@ -1,7 +1,16 @@
-<script></script>
+<script>
+
+</script>
 
 <template>
-    
+    <head>
+      <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer" />
+    </head>
       <body>
         <div class="container">
           <div class="form">
@@ -16,7 +25,7 @@
             <div class="content">
               <div class="name">
                 <div class="title">Tên đăng nhập</div>
-                <input type="text" name="username" id="" />
+                <input type="text" name="username" id="user" />
               </div>
               <div class="password">
                 <div
@@ -29,7 +38,7 @@
                   <div><a href="">Quên mật khẩu?</a></div>
                 </div>
                 <div>
-                  <input type="password" name="password" id="" />
+                  <input type="password" name="password" id="pass" />
                 </div>
               </div>
               <div class="login_btn">
@@ -51,7 +60,7 @@
                 </div>
               </div>
               <div>
-                Bạn chưa có tài khoản?<span><a href="">Đăng ký ngay!</a></span>
+                Bạn chưa có tài khoản?<span><router-link to="/register">Đăng ký ngay!</router-link></span>
               </div>
             </div>
           </div>
@@ -60,7 +69,7 @@
 
 </template>
 
-<style>
+<style scoped>
 *{
     text-decoration: none;
     padding: 0;
@@ -69,26 +78,31 @@
 body{
     width: 100%;
     height: 1000px;
+    background-color: #F0F2F5;
 }
 .container{
-    height: 100%;
+    height: 800px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .form{
-   
-    border: 1px solid #CCC;
-    width: 500px;
-    height: 458px;
+    width: 530px;
+    height: 520px;
+    border-radius: 14px;
+    background: var(--light-greyscale-greyscale-200, #FFF);
+box-shadow: 0px 12px 40px 0px rgba(0, 0, 0, 0.16);
     
 }
 .header{
+    display: flex;
+    justify-content: center;
     padding: 10px;
     position: relative;
-    text-align: center;
+    align-items: center;
     text-transform: uppercase;
-    border-bottom:1px solid #CCC ;
+    border-bottom:1px solid #E5E6EC ;
+    height: 40px;
 }
 .content{
    width: 100%;
