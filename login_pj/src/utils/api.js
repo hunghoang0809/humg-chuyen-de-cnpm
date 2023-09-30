@@ -1,24 +1,25 @@
-let backendURL = "localhost:3000/";
+let backendURL = "http://localhost:3000/"
 
-export default async function Get(url = "") {
-  var Url = baseURL + url;
+export async function Get(url = "") {
+  var Url = backendURL + url
   const response = await fetch(Url, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
-  });
-  return response.json();
+  })
+  return response.json()
 }
 
-export default async function Post(url = "", body) {
-  var Url = baseURL + url;
+export async function Post(url = "", body) {
+  console.log(body)
+  var Url = backendURL + url
   const response = await fetch(Url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(body)
-  });
-  return response.json();
+    body: JSON.stringify(body),
+  })
+  return response.json()
 }

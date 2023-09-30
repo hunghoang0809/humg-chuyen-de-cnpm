@@ -1,4 +1,31 @@
-<script></script>
+<script>
+import { Post } from "../utils/api.js"
+export default {
+  name: "App",
+  data() {
+    return {
+      username: "",
+      password: "",
+    }
+  },
+  methods: {
+    async login() {
+      if (this.username && this.password) {
+        let response = await Post("login", {
+          username: this.username,
+          password: this.password,
+        })
+        if (response.msg === "Dang nhap thanh cong") {
+          this.$router.push("/")
+          isLogin = true
+        } else {
+          alert("Sai tai khoan mat khau")
+        }
+      }
+    },
+  },
+}
+</script>
 
 <template>
   <head>
@@ -24,7 +51,7 @@
         <div class="content">
           <div class="name">
             <div class="title">Tên đăng nhập</div>
-            <input type="text" name="username" id="user" />
+            <input type="text" name="username" id="user" v-model="username" />
           </div>
           <div class="password">
             <div
@@ -41,14 +68,24 @@
                 style="position: relative"
                 type="password"
                 name="password"
-                id="pass" />
+                id="pass"
+                v-model="password" />
               <i
                 class="fa-sharp fa-solid fa-eye-slash fa-rotate-180"
                 style="position: absolute; right: 0"></i>
             </div>
           </div>
           <div class="login_btn">
-            <button class="login">Đăng nhập</button>
+            <button
+              class="login"
+              @click="login()"
+              :style="
+                this.username && this.password
+                  ? {}
+                  : { color: '#E5E6EC', background: '#BDBDBD' }
+              ">
+              Đăng nhập
+            </button>
             <div class="text">hoặc đăng nhập bằng</div>
             <div class="sc">
               <button class="fb">

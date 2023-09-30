@@ -1,40 +1,38 @@
-console.log("hello world")
 const express = require("express")
+
 const app = express()
-//Lay du lieu GET
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.get("/user", checkLogin, (req, res) => {
-  console.log("Here")
-  res.send("Xin chao Hoc Tran")
-  //res.send("Hello world");
-})
+const cors = require("cors")
+app.use(cors())
 
+let userHocTran = { id: 1, username: "hoctran", password: "12345678" }
 //Login
-let users = [{ username: "hoctran", password: "123456789" }]
 app.post("/login", (req, res) => {
-  //logic cau request
-  console.log(req.body)
   if (
-    req.body.username === users[0].username &&
-    req.body.password === users[0].password
+    req.body.username === userHocTran.username &&
+    req.body.password === userHocTran.password
   ) {
-    res.status(200).json({ message: "Dang nhap thanh cong" })
+    res.status(200).json({ msg: "Dang nhap thanh cong" })
     return
   }
-  res.status(400).json({ message: "Dang nhap that bai" })
+  res.status(400).json({ msg: "khong dang nhap thanh cong" })
 })
 //Dang ky
-app.put("/resgister", (req, res) => {
-  res.status(200).json({ message: "Day la PUT Request" })
+app.post("/register", checkLogin, (req, res) => {
+  res.status(200).json({ text: "Day la PUT Request" })
+})
+//Get User By ID
+app.get("/user/:id", checkLogin, (req, res) => {
+  res.status(200).json({ text: "Xin chao Hoc Tran id cua ban la 1" })
 })
 
-//middleware Da dang nhap chua
 function checkLogin(req, res, next) {
-  let isLogin = true
+  let isLogin = false
+  //logic kiểm tra đã đăng nhập hay chưa
   if (!isLogin) {
-    res.send("Chua Dang nhap")
+    res.send("Chua dang nhap")
     return
   }
   next()
