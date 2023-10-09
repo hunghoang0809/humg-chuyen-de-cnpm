@@ -15,7 +15,9 @@ export default {
           username: this.username,
           password: this.password,
         })
-        if (response.msg === "Dang nhap thanh cong") {
+        console.log(response)
+        if (response && response.length > 0) {
+          let user = response[0];
           this.$router.push("/")
           isLogin = true
         } else {
@@ -189,6 +191,7 @@ input {
   border: transparent;
   background-color: #f4f0f0;
   border-radius: 8px;
+  padding: 8px 8px;
 }
 
 button {
