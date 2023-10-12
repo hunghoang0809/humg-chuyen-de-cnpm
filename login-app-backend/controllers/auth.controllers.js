@@ -1,6 +1,4 @@
-import connection from "../database.js"
-
-async function Login(req, res, next) {
+async function Login(req, res) {
   const { username, password } = req.body
 
   let sqlUserSelect =
@@ -25,10 +23,10 @@ async function Login(req, res, next) {
   )
 }
 
-async function Register() {}
+async function Register(req, res) {}
 
-async function Logout() {}
+async function Logout(req, res) {}
 
-async function GetUserById() {}
+async function GetUserById(req, res) {}
 
-export { Login, Register, Logout, GetUserById }
+export default { Login, Register, Logout, GetUserById }

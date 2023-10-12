@@ -1,5 +1,3 @@
-const express = require("express")
+import express from "express"
 
-async function checkLogin() {}
-
-export { checkLogin }
+export default function CheckLogin(req, res, next) {}

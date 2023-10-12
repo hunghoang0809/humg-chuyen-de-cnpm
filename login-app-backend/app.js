@@ -1,18 +1,24 @@
-import connection from "../database.js"
+// Import
+import express from "express"
+import cors from "cors"
+import mysql from "mysql2"
+import AuthController from "../login-app-backend/controllers/auth.controllers.js"
 
-// EXPRESS
-const express = require("express")
-
+// Config
 const app = express()
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-
-// CORS
-const cors = require("cors")
 app.use(cors())
 
 //CONNECT TO DATABASE MYSQL
+const connection = mysql.createConnection({
+  host: "127.0.0.1",
+  user: "root",
+  password: "my-secret-pw",
+  database: "PUBLIC",
+  port: 3307,
+})
 
 connection.connect(function (err) {
   if (err) throw err
@@ -26,13 +32,9 @@ connection.connect(function (err) {
 })
 
 // ROUTE
-
-const AuthController = require("../login-app-backend/controllers/auth.controllers.js")
-
 app.use("/auth", AuthController)
 
 // PORT
-
 app.listen(3000)
 
 // app.post("/login", (req, res) => {
