@@ -4,26 +4,30 @@ export default {
   name: "App",
   data() {
     return {
-      username: "",
-      password: "",
+      
+        username: "",
+        password: "",
+
+    
+      
     }
   },
   methods: {
     async login() {
-      if (this.username && this.password) {
-        let response = await Post("login", {
-          username: this.username,
-          password: this.password,
-        })
-        console.log(response)
-        if (response && response.length > 0) {
-          let user = response[0];
-          this.$router.push("/")
-          isLogin = true
-        } else {
-          alert("Sai tai khoan mat khau")
-        }
+
+      let response = await Post("login", {
+        username: this.username,
+        password: this.password,
+      })
+      if (response && response.length > 0) {
+        this.$router.push("/")
+
+
+      } else {
+        alert("Sai tai khoan mat khau")
+
       }
+
     },
   },
 }
@@ -31,12 +35,9 @@ export default {
 
 <template>
   <head>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
       integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
 
   <body>
@@ -44,9 +45,7 @@ export default {
       <div class="form">
         <div class="header">
           <button class="close_icon">
-            <i
-              class="fa-solid fa-x"
-              style="position: absolute; right: 0; padding-right: 10px"></i>
+            <i class="fa-solid fa-x" style="position: absolute; right: 0;top: 0;padding-top: 16px ;padding-right: 16px"></i>
           </button>
           <h4>Đăng nhập</h4>
         </div>
@@ -56,8 +55,7 @@ export default {
             <input type="text" name="username" id="user" v-model="username" />
           </div>
           <div class="password">
-            <div
-              style="
+            <div style="
                 display: flex;
                 justify-content: space-between;
                 width: 100%;
@@ -65,49 +63,31 @@ export default {
               <div class="title">Mật khẩu</div>
               <div><a href="">Quên mật khẩu?</a></div>
             </div>
-            <div>
-              <input
-                style="position: relative"
-                type="password"
-                name="password"
-                id="pass"
-                v-model="password" />
-              <i
-                class="fa-sharp fa-solid fa-eye-slash fa-rotate-180"
-                style="position: absolute; right: 0"></i>
+            <div style="position: relative">
+              <i class="fa-sharp fa-solid fa-eye-slash fa-rotate-180" style="position: absolute; top: 34%; right: 0;"></i>
+              <input  type="password" name="password" id="pass" v-model="password" />
             </div>
           </div>
           <div class="login_btn">
-            <button
-              class="login"
-              @click="login()"
-              :style="
-                this.username && this.password
-                  ? {}
-                  : { color: '#E5E6EC', background: '#BDBDBD' }
+            <button class="login" @click="login()" 
+            :style="this.username && this.password
+                ? {}
+                : { color: '#E5E6EC', background: '#BDBDBD' }
               ">
               Đăng nhập
             </button>
             <div class="text">hoặc đăng nhập bằng</div>
             <div class="sc">
               <button class="fb">
-                <i
-                  class="fa-brands fa-facebook-f fa-lg"
-                  style="color: #165eda; padding-right: 5px"></i
-                >Facebook
+                <i class="fa-brands fa-facebook-f fa-lg" style="color: #165eda; padding-right: 5px"></i>Facebook
               </button>
               <button class="gg">
-                <i
-                  class="fa-brands fa-google fa-lg"
-                  style="padding-right: 5px"></i
-                >Google
+                <i class="fa-brands fa-google fa-lg" style="padding-right: 5px"></i>Google
               </button>
             </div>
           </div>
           <div>
-            Bạn chưa có tài khoản?<span
-              ><router-link to="/register">Đăng ký ngay!</router-link></span
-            >
+            Bạn chưa có tài khoản?<span><router-link to="/register"> <span style="color: white;">.</span> Đăng ký ngay!</router-link></span>
           </div>
         </div>
       </div>
@@ -120,7 +100,7 @@ export default {
   text-decoration: none;
   padding: 0;
   margin: 0;
-  font-family: Roboto;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -204,8 +184,9 @@ button {
 }
 
 .login {
-  width: 100%;
-  height: 35px;
+  width: 415px;
+  
+  padding: 15px 0;
   background-color: #00bf6f;
   border-radius: 40px;
   color: white;
