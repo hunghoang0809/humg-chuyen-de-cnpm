@@ -12,6 +12,6 @@ const router = express.Router()
 router.post("/login", Login)
 router.post("/register", Register)
 router.post("/logout", Logout)
-router.get("/user/:id", GetUserById)
+router.get("/user/:id", CheckLogin, GetUserById)
 
 export default router
