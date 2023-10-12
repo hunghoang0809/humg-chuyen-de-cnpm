@@ -33,6 +33,8 @@ connection.connect(function (err) {
 //Login
 app.post("/login", (req, res) => {
   if (req.body.username && req.body.password) {
+    let { email, password } = req.body
+    
     let sqlUserSelect =
       "SELECT * FROM users WHERE user_name = ? AND password = ?"
     connection.query(
@@ -48,6 +50,7 @@ app.post("/login", (req, res) => {
           res.status(400).json({ msg: "Dang nhap khong thanh cong" })
           return
         }
+         console.log(result)
         res.status(200).json(result)
 
         return
@@ -94,25 +97,22 @@ app.post("/register", (req, res) => {
   }
 })
 //Get User By ID
-app.get("/user/:id",checkLogin,  (req, res) => {
-  
-    let sqlLoginUser = "SELECT * FROM users WHERE id = ?"
-    connection.query(sqlLoginUser,  function (err, result) {
-      if (err) {
-        console.log(err)
-        return
-      }
-      console.log(result)
-      res.status(200).json(result)
-
-    })
-  
+app.get("/user/:id", checkLogin, (req, res) => {
+  let id = req.params.id
+  let sqlLoginUser = "SELECT * FROM users WHERE id = ?"
+  connection.query(sqlLoginUser, [id], function (err, result) {
+    if (err) {
+      console.log(err)
+      return
+    }
+   
+    res.status(200).json(result)
+  })
 })
-
 function checkLogin(req, res, next) {
 
   
-  if (req.param.username && req.param.username) {
+  if (req.param.username && req.param.password) {
     let isLogin = false
     if (!isLogin) {
     res.send("Chua dang nhap")

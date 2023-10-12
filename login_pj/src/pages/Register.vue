@@ -61,29 +61,29 @@ export default {
           <div class="input">
             <div class="name" id="input">
               <div class="text">Họ và tên</div>
-              <input type="text" name="name" id="text" placeholder="Nhập họ và tên của bạn" v-model="name" />
+              <input class="text_2" type="text" name="name" placeholder="Nhập họ và tên của bạn" v-model="name" />
             </div>
             <div class="username" id="input">
               <div class="text">Tên đăng nhập</div>
-              <input type="text" name="uname" id="text" placeholder="Nhập tên đăng nhập của bạn" v-model="username" />
+              <input class="text_2" type="text" name="uname" placeholder="Nhập tên đăng nhập của bạn" v-model="username" />
             </div>
             <div class="password" id="input">
               <div class="text">Mật khẩu</div>
               <div style="position: relative;">
-                <input type="password" name="password" id="text" placeholder="••••••••" v-model="password" />
+                <input class="input_2 text_2" type="password" name="password" placeholder="••••••••" v-model="password" />
                 <i class="fa-sharp fa-solid fa-eye-slash fa-rotate-180" style="position: absolute; top: 34%; right: -12px;"></i>
               </div>
             </div>
             <div class="confirm" id="input">
               <div class="text">Nhập lại mật khẩu</div>
               <div style="position: relative;">
-                <input type="password" name="cfpassword" id="text" placeholder="••••••••" v-model="cfpassword" />
+                <input class="input_2 text_2" type="password" name="cfpassword" placeholder="••••••••" v-model="cfpassword" />
                 <i class="fa-sharp fa-solid fa-eye-slash fa-rotate-180" style="position: absolute; top: 34%; right: -12px;"></i>
               </div>
             </div>
             <div class="email" id="input">
               <div class="text">Email</div>
-              <input type="email" name="email" id="text" placeholder="Nhập email của bạn" v-model="email" />
+              <input class="text_2" type="email" name="email" id="text" placeholder="Nhập email của bạn" v-model="email" />
             </div>
             <input style="
                 color: white;
@@ -148,7 +148,13 @@ export default {
 }
 
 input::placeholder {
-  color: #ccc;
+  color: #BDBDBD;
+}
+
+.input_2::placeholder {
+  letter-spacing: 3px; 
+  font-weight: 700;
+  font-size: 23px;
 }
 
 .social_icon {
@@ -169,6 +175,9 @@ margin-top: 35px;
 
 .login-container {
       margin: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .or-divider {
@@ -244,7 +253,7 @@ body {
   line-height: 22px;
 }
 
-#text {
+.text_2 {
   display: flex;
   width: 440px;
   height: 30px;
