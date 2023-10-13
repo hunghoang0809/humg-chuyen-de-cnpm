@@ -1,3 +1,5 @@
+import connection from "../database/connection.js"
+
 async function Login(req, res) {
   const { username, password } = req.body
 
@@ -13,7 +15,7 @@ async function Login(req, res) {
         return
       }
 
-      if (!result)
+      if (!result || result.length === 0)
         throw res.status(400).json("Tên đăng nhập hoặc mật khẩu không đúng")
 
       res.cookie("id", result[0].id)
