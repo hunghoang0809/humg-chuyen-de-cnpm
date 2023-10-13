@@ -19,7 +19,7 @@ export default {
         this.getUser()
     },
     methods: {
-        async getUser() {
+        async getUser() { 
             let response = await Get("user/:id")
             console.log(response)
             

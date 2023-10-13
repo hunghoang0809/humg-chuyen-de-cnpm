@@ -1,18 +1,14 @@
+
 import connection from "../database/connection.js"
 
 async function Login(req, res) {
+
   const { username, password } = req.body
 
   let sqlUserSelect =
-    "SELECT DISTINCT * FROM users WHERE user_name = ? AND password = ?"
-  connection.query(
-    sqlUserSelect,
-    [username, password],
-
-    function (err, result) {
-      if (err) {
-        console.log(err)
+ async function Login(req, res, next) {
         return
+
       }
 
       if (!result || result.length === 0)
@@ -79,3 +75,5 @@ async function GetUserById(req, res) {
 }
 
 export default { Login, Register, Logout, GetUserById }
+
+  

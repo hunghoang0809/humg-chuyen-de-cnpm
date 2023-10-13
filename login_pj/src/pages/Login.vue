@@ -169,7 +169,7 @@ input {
   width: 100%;
   height: 35px;
   border: transparent;
-  background-color: #f4f0f0;
+  background-color: #F7F7F7;
   border-radius: 8px;
   padding: 8px 8px;
 }
@@ -216,12 +216,12 @@ button {
 .fb {
   width: 45%;
   height: 30px;
-  border-radius: 30px;
+  border-radius: 24px;
 }
 
 .gg {
   width: 45%;
   height: 30px;
-  border-radius: 30px;
+  border-radius: 24px;
 }
 </style>
