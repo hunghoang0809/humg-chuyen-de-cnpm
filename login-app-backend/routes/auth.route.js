@@ -1,14 +1,21 @@
-const express = require("express")
-const router = express.Router()
+
+import express from "express"
+
 import {
   Login,
   Register,
   Logout,
   GetUserById,
 } from "../controllers/auth.controllers.js"
-import { checkLogin } from "../middlewares/checkLogin.js"
+
+import CheckLogin from "../middlewares/checkLogin.js"
+
+const router = express.Router()
+
 router.post("/login", Login)
 router.post("/register", Register)
 router.post("/logout", Logout)
-router.get("/user/:id", checkLogin, GetUserById)
-module.exports = router
+router.get("/user/:id", CheckLogin, GetUserById)
+
+export default router
+
