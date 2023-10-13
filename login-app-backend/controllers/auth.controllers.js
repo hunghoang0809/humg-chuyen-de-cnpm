@@ -23,10 +23,57 @@ async function Login(req, res) {
   )
 }
 
-async function Register(req, res) {}
+async function Register(req, res) {
+  const { fullname, user_name, password, email } = req.body
 
-async function Logout(req, res) {}
+  let sqlUserInsert =
+    "INSERT INTO users (full_name, user_name, password, email) VALUES (?, ?, ?, ?)"
+  connection.query(
+    sqlUserInsert,
+    [fullname, user_name, password, email],
 
-async function GetUserById(req, res) {}
+    function (err, result) {
+      if (err) {
+        console.log(err)
+        return res.status(400).json("Đăng ký không thành công")
+      }
+
+      return res.status(200).json("Đăng ký thành công")
+    }
+  )
+}
+
+async function Logout(req, res) {
+  const userId = req.cookies.id
+
+  let sqlUserUpdate = "UPDATE users SET token = NULL WHERE id = ?"
+  connection.query(sqlUserUpdate, [userId], function (err, result) {
+    if (err) {
+      console.log(err)
+      return res.status(400).json("Đăng xuất không thành công")
+    }
+
+    res.clearCookie("id")
+
+    return res.status(200).json("Đăng xuất thành công")
+  })
+}
+
+async function GetUserById(req, res) {
+  const userId = req.cookies.id
+
+  let sqlUserSelect = "SELECT * FROM users WHERE id = ?"
+  connection.query(sqlUserSelect, [userId], function (err, result) {
+    if (err) {
+      console.log(err)
+      return res.status(400).json("Lỗi truy vấn cơ sở dữ liệu")
+    }
+
+    if (!result || result.length === 0)
+      return res.status(400).json("Không tìm thấy người dùng")
+
+    return res.status(200).json(result[0])
+  })
+}
 
 export default { Login, Register, Logout, GetUserById }
