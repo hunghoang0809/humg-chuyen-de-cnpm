@@ -1,13 +1,13 @@
 const express = require("express")
 const router = express.Router()
-
-import {
-  Login,
+const method = require({
+Login,
   Register,
   Logout,
   GetUserById,
-} from "../controllers/auth.controllers.js"
-import { checkLogin } from "../middlewares/checkLogin.js"
+})
+
+const checkLogin= require("checkLogin")
 
 router.post("/login", Login)
 router.post("/register", Register)

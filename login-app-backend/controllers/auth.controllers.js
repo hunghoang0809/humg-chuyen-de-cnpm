@@ -1,4 +1,4 @@
-import connection from "../database.js"
+const connection= require("connection")
 
 async function Login(req, res, next) {
   const { username, password } = req.body

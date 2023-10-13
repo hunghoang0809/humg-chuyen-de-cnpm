@@ -1,4 +1,4 @@
-import connection from "../database.js"
+
 
 // EXPRESS
 const express = require("express")
@@ -13,6 +13,16 @@ const cors = require("cors")
 app.use(cors())
 
 //CONNECT TO DATABASE MYSQL
+const mysql = require("mysql2")
+
+ connection = mysql.createConnection({
+  host: "127.0.0.1",
+  user: "root",
+  password: "my-secret-pw",
+  database: "PUBLIC",
+  port: 3307,
+})
+
 
 connection.connect(function (err) {
   if (err) throw err
@@ -25,102 +35,10 @@ connection.connect(function (err) {
   console.log("Connected!")
 })
 
-//Login
-app.post("/login", (req, res) => {
-  if (req.body.username && req.body.password) {
-    let sqlUserSelect =
-      "SELECT * FROM users WHERE user_name = ? AND password = ?"
-    connection.query(
-      sqlUserSelect,
-      [req.body.username, req.body.password],
-      function (err, result) {
-        if (err) {
-          console.log(err)
-          return
-        }
-        if (result && result.length < 1) {
-
-          res.status(400).json({ msg: "Dang nhap khong thanh cong" })
-          return
-        }
-        res.status(200).json(result)
-
-        return
-      },
-    )
-  }
-})
-//Dang ky
-app.post("/register", (req, res) => {
-  let name = req.body.name
-  let username = req.body.username
-  let password = req.body.password
-  let email = req.body.email
-  if (username && password && email) {
-    connection.query(
-      "SELECT * FROM users WHERE user_name = ? ",
-      [username],
-      function (err, result) {
-        if (err) {
-          console.log(err)
-          return
-        }
-        if (result.length > 0) {
-          res.status(400).json({ msg: "Tên đăng nhập đã tồn tại" })
-        } else {
-          let sqlAddUser =
-            "INSERT INTO users (fullname, user_name, password, email) VALUES (?, ?, ?, ?)"
-
-          connection.query(
-            sqlAddUser,
-            [name, username, password, email],
-            function (err, result) {
-              if (err) {
-                console.log(err)
-                return
-              }
-              res.status(200).json(result)
-
-            },
-          )
-        }
-      },
-    )
-  }
-})
-//Get User By ID
-app.get("/user/:id",checkLogin,  (req, res) => {
-  
-    let sqlLoginUser = "SELECT * FROM users WHERE id = ?"
-    connection.query(sqlLoginUser,  function (err, result) {
-      if (err) {
-        console.log(err)
-        return
-      }
-      console.log(result)
-      res.status(200).json(result)
-
-    })
-  
-})
-
-function checkLogin(req, res, next) {
-
-  
-  if (req.param.username && req.param.username) {
-    let isLogin = false
-    if (!isLogin) {
-    res.send("Chua dang nhap")
-    return
-  }
-  }
-  //logic kiểm tra đã đăng nhập hay chưa
-  
-  next()
-}
+const LoginRoute = require("./routes/auth.route")
+app.use("/auth",LoginRoute)
 
 app.listen(3000)
-
 // app.post("/login", (req, res) => {
 //   let { username, password } = req.body
 
