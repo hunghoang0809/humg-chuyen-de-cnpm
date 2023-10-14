@@ -53,12 +53,15 @@ app.post("/auth/login", (req, res) => {
       }
 
       if (!result || result.length === 0)
-        throw res.status(400).json({ msg: "Tên đăng nhậph hoặc mật khẩu không đúng" })
-
-      res.cookie("id", result[0].id, {
-        sameSite: "none",
-        secure: true,
-      })
+        return res
+          .status(400)
+          .json({ msg: "Tên đăng nhập hoặc mật khẩu không đúng" })
+      else {
+        res.cookie("id", result[0].id, {
+          sameSite: "none",
+          secure: true,
+        })
+      }
 
       return res.status(200).json(result)
     },
@@ -88,7 +91,7 @@ app.post("/auth/register", (req, res) => {
             function (err, result) {
               if (err) {
                 console.log(err)
-                return res.status(400).json({msg: 'Đăng kí không thành công'})
+                return res.status(400).json({ msg: "Đăng kí không thành công" })
               }
 
               return res.status(200).json(result)
@@ -107,7 +110,7 @@ app.post("/auth/logout", CheckLogin, (req, res) => {
   connection.query(sqlUserSelect, [userId], function (err, result) {
     if (err) {
       console.log(err)
-      return res.status(400).json({msg:'lỗi truy vấn cơ sở dữ liệu'})
+      return res.status(400).json({ msg: "lỗi truy vấn cơ sở dữ liệu" })
     }
 
     res.clearCookie("id", {
