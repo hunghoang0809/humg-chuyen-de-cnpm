@@ -4,6 +4,7 @@ export async function Get(url = "") {
   var Url = backendURL + url
   const response = await fetch(Url, {
     method: "GET",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
@@ -16,6 +17,7 @@ export async function Post(url = "", body) {
   var Url = backendURL + url
   const response = await fetch(Url, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },

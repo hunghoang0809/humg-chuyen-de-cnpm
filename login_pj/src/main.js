@@ -9,7 +9,7 @@ let isLogin = false
 const routes = [
   { path: "/login", component: Login },
   { path: "/register", component: Register },
-  { path: "/", component: Home },
+  { path: "/", component: Home, meta: { requiresAuth: true } },
 ]
 
 const router = createRouter({

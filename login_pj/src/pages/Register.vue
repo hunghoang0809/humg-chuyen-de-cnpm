@@ -15,41 +15,36 @@ export default {
   methods: {
     async register() {
       if (this.cfpassword == this.password) {
-
-        let response = await Post("register", {
+        let response = await Post("auth/register", {
           name: this.name,
           username: this.username,
           password: this.password,
-          email: this.email
+          email: this.email,
         })
-        if (response && response.legth > 1) {
-          alert('Đăng kí thành công')
-          console.log(response)
-        }
-        else {
-          alert('vui lòng nhập lại thông tin')
-        }
-
-
-
-
-
+        console.log(response.length)
+        if (response && response.length > 0) {
+        alert('Đăng ký thành công')
+        } else {
+        alert('Tài khoản đã tồn tại')
+       }
+      
       }
+      
       if (this.cfpassword !== this.password) {
-        alert('Mật khẩu không khớp')
+        alert("Mật khẩu không khớp")
       }
-
-    }
-
+    },
   },
 }
-
 </script>
 <template>
-<head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
       integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
   </head>
   <body>
     <div class="container">
@@ -61,58 +56,114 @@ export default {
           <div class="input">
             <div class="name" id="input">
               <div class="text">Họ và tên</div>
-              <input class="text_2" type="text" name="name" placeholder="Nhập họ và tên của bạn" v-model="name" />
+              <input
+                class="text_2"
+                type="text"
+                name="name"
+                placeholder="Nhập họ và tên của bạn"
+                required
+                v-model="name" />
             </div>
             <div class="username" id="input">
               <div class="text">Tên đăng nhập</div>
-              <input class="text_2" type="text" name="uname" placeholder="Nhập tên đăng nhập của bạn" v-model="username" />
+              <input
+                class="text_2"
+                type="text"
+                name="uname"
+                placeholder="Nhập tên đăng nhập của bạn"
+                v-model="username" />
             </div>
             <div class="password" id="input">
               <div class="text">Mật khẩu</div>
-              <div style="position: relative;">
-                <input class="input_2 text_2" type="password" name="password" placeholder="••••••••" v-model="password" />
-                <i class="fa-sharp fa-solid fa-eye-slash fa-rotate-180" style="position: absolute; top: 34%; right: -12px;"></i>
+              <div style="position: relative">
+                <input
+                  class="input_2 text_2"
+                  type="password"
+                  name="password"
+                  required
+                  placeholder="••••••••"
+                  v-model="password" />
+                <i
+                  class="fa-sharp fa-solid fa-eye-slash fa-rotate-180"
+                  style="position: absolute; top: 34%; right: -12px"></i>
               </div>
             </div>
             <div class="confirm" id="input">
               <div class="text">Nhập lại mật khẩu</div>
-              <div style="position: relative;">
-                <input class="input_2 text_2" type="password" name="cfpassword" placeholder="••••••••" v-model="cfpassword" />
-                <i class="fa-sharp fa-solid fa-eye-slash fa-rotate-180" style="position: absolute; top: 34%; right: -12px;"></i>
+              <div style="position: relative">
+                <input
+                  class="input_2 text_2"
+                  type="password"
+                  name="cfpassword"
+                  required
+                  placeholder="••••••••"
+                  v-model="cfpassword" />
+                <i
+                  class="fa-sharp fa-solid fa-eye-slash fa-rotate-180"
+                  style="position: absolute; top: 34%; right: -12px"></i>
               </div>
             </div>
             <div class="email" id="input">
               <div class="text">Email</div>
-              <input class="text_2" type="email" name="email" id="text" placeholder="Nhập email của bạn" v-model="email" />
+              <input
+                class="text_2"
+                type="email"
+                name="email"
+                id="text"
+                placeholder="Nhập email của bạn"
+                required
+                v-model="email" />
             </div>
-            <input style="
+            <input
+              style="
                 color: white;
                 accent-color: rgba(38, 255, 0, 0.926);
                 margin-right: 8px;
                 width: 20px;
-              " type="checkbox" name="agree" v-model="checked" />
-            <span style="
+              "
+              type="checkbox"
+              name="agree"
+              v-model="checked" />
+            <span
+              style="
                 color: #002352;
                 font-size: 14px;
                 font-style: normal;
                 font-weight: 400;
                 line-height: 130%;
-              ">Tôi đồng ý với các
-              <a style="
+              "
+              >Tôi đồng ý với các
+              <a
+                style="
                   color: #1890ff;
                   font-size: 14px;
                   font-style: normal;
                   font-weight: 400;
                   line-height: 130%;
-                " href="">điều kiện và điều khoản</a></span>
+                "
+                href=""
+                >điều kiện và điều khoản</a
+              ></span
+            >
           </div>
           <div class="btn">
             <div id="btn">
-              <button class="register" @click="register()" :style="this.username && this.password && this.checked && this.email && this.cfpassword
-                ? {}
-                : { color: '#BDBDBD', background: '#E5E6EC' }">Đăng ký</button>
+              <button
+                class="register"
+                @click="register()"
+                :style="
+                  this.username &&
+                  this.password &&
+                  this.checked &&
+                  this.email &&
+                  this.cfpassword
+                    ? {}
+                    : { color: '#BDBDBD', background: '#E5E6EC' }
+                ">
+                Đăng ký
+              </button>
             </div>
-            
+
             <div class="login-container">
               <div class="or-divider">
                 <div class="or-text">Hoặc</div>
@@ -125,13 +176,21 @@ export default {
             </div>
 
             <div class="social"></div>
-            <div class="text" style="width: 100%; text-align: center; font-weight: 400;">
+            <div
+              class="text"
+              style="width: 100%; text-align: center; font-weight: 400">
               Bạn đã có tài khoản rồi?
-              <router-link to="/login" style=" color: #1890ff;
+              <router-link
+                to="/login"
+                style="
+                  color: #1890ff;
                   font-size: 16px;
                   font-style: normal;
                   font-weight: 400;
-                  line-height: 130%;"><span style="color: white;">.</span> Đăng nhập</router-link>
+                  line-height: 130%;
+                "
+                ><span style="color: white">.</span> Đăng nhập</router-link
+              >
             </div>
           </div>
         </div>
@@ -144,27 +203,28 @@ export default {
   text-decoration: none;
   padding: 0;
   margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 input::placeholder {
-  color: #BDBDBD;
+  color: #bdbdbd;
 }
 
 .input_2::placeholder {
-  letter-spacing: 3px; 
+  letter-spacing: 3px;
   font-weight: 700;
   font-size: 23px;
 }
 
 .social_icon {
-margin: auto;
-margin-top: 35px;
+  margin: auto;
+  margin-top: 35px;
 }
 
 .social_icon i {
   border-radius: 100px;
-  border: 1px solid var(--border-input, #EEE);
+  border: 1px solid var(--border-input, #eee);
   font-size: 24px;
   width: 24px;
   padding: 8px;
@@ -174,34 +234,34 @@ margin-top: 35px;
 }
 
 .login-container {
-      margin: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
-    .or-divider {
-      display: flex;
-      align-items: center;
-      margin-top: 20px;
-      height: 10px;
-      width: 300px;
-    }
+.or-divider {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  height: 10px;
+  width: 300px;
+}
 
-    .or-divider::before,
-    .or-divider::after {
-      content: "";
-      flex: 1;
-      border-bottom: 1px solid #EEEEEE;
-      margin: 0 10px;
-    }
+.or-divider::before,
+.or-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #eeeeee;
+  margin: 0 10px;
+}
 
-    .or-text {
-      color: #002352;
-      font-size: 14px;
-      margin: 0 5px;
-       white-space: nowrap;
-    }
+.or-text {
+  color: #002352;
+  font-size: 14px;
+  margin: 0 5px;
+  white-space: nowrap;
+}
 
 body {
   width: 100%;

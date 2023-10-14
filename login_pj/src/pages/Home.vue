@@ -1,34 +1,50 @@
 <script>
-import { Get } from '../utils/api';
+import { Get, Post } from "../utils/api"
+import Cookies from 'js-cookie'
 
 export default {
-
     name: "Home",
-    // beforeMount() {
-    //     let isLogin = false;
-    //     if (!isLogin) {
-    //         this.$router.push("/login")
-    //     }
-    // },
-    data(){
-        return {
-            user: []
+    beforeMount() {
+
+        const userId = Cookies.get("id1")
+        if (!userId) {
+            this.$router.push("/login")
+
+         
         }
-    },
-    mounted() {
         this.getUser()
     },
-    methods: {
-        async getUser() { 
-            let response = await Get("user/:id")
-            console.log(response)
-            
+    data() {
+        return {
+            user: null,
         }
-    }
+    },
 
+    methods: {
+        async getUser() {
+            let response = await Get("profile")
+            this.user = response
+
+
+
+        },
+        async logout() {
+            let response = await Post("auth/logout")
+            Cookies.remove('id1')
+            this.$router.push("/login")
+        },
+    },
 }
-
 </script>
 
-<template><h1>Xin Chao </h1></template>
-<style></style> 
+<template>
+    <div v-if=(user)>
+        <h1>Xin Chao {{user.fullname}} id của bạn là {{ user.id }}   </h1>
+        <button type="button" @click="logout()">đăng xuất</button>
+    </div>
+   
+</template>
+<style></style>
+
+
+
