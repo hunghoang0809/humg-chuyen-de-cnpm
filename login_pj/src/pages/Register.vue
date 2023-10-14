@@ -21,13 +21,10 @@ export default {
           password: this.password,
           email: this.email,
         })
-        console.log(response.length)
-        if (response && response.length > 0) {
-        alert('Đăng ký thành công')
-        } else {
-        alert('Tài khoản đã tồn tại')
-       }
-      
+        alert(response.msg)
+        if (response.msg == "Đăng kí thành công") {
+          this.$router.push('/login')
+        }
       }
       
       if (this.cfpassword !== this.password) {

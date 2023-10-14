@@ -94,7 +94,7 @@ app.post("/auth/register", (req, res) => {
                 return res.status(400).json({ msg: "Đăng kí không thành công" })
               }
 
-              return res.status(200).json(result)
+              return res.status(200).json({msg:"Đăng kí thành công"})
             },
           )
         }
