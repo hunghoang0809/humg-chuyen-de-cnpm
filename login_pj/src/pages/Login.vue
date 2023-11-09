@@ -10,7 +10,9 @@ export default {
     }
   },
   mounted(){
-
+    if (Cookies.get('id1')) { 
+      this.$router.push('/')
+    }
   },
   methods: {
     async login() {
@@ -22,6 +24,7 @@ export default {
       if (response && response.length > 0) {
         console.log(response)
         Cookies.set('id1', `${response[0].id}`)
+        
         this.$router.push("/")
       } else {
         alert("Sai tai khoan mat khau")

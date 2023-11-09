@@ -1,6 +1,5 @@
 import express from "express"
 import cors from "cors"
-// import AuthControllers from "../login-app-backend/controllers/auth.controllers.js"
 import cookieParser from "cookie-parser"
 import mysql from "mysql2"
 
